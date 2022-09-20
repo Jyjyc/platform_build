@@ -30,7 +30,7 @@ PROP_VALUE_MAX = 91
 def mangle_build_prop(prop_list):
   # If ro.debuggable is 1, then enable adb on USB by default
   # (this is for userdebug builds)
-  if prop_list.get_value("ro.debuggable") == "1":
+  #if prop_list.get_value("ro.debuggable") == "1":
     val = prop_list.get_value("persist.sys.usb.config")
     if "adb" not in val:
       if val == "":
