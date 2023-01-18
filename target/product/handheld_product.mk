@@ -22,21 +22,21 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/media_product.mk)
 
 # /product packages
 PRODUCT_PACKAGES += \
-    # Calendar \
+    Calendar \
     Camera2 \
     Contacts \
-    # DeskClock \
+    DeskClock \
     Gallery2 \
     # Music \
     OneTimeInitializer \
     preinstalled-packages-platform-handheld-product.xml \
-    # SettingsIntelligence \
+    SettingsIntelligence \
     frameworks-base-overlays
 
-ifeq ($(PALLADIUM_BUILD),)
+#ifeq ($(PALLADIUM_BUILD),)
 PRODUCT_PACKAGES += \
     LatinIME
-endif
+#endif
 
 PRODUCT_PACKAGES_DEBUG += \
     frameworks-base-overlays-debug
