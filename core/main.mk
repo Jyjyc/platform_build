@@ -392,22 +392,25 @@ ifneq (,$(user_variant))
 
 else # !user_variant
   # Turn on checkjni for non-user builds.
-  ADDITIONAL_SYSTEM_PROPERTIES += ro.kernel.android.checkjni=1
+  #ADDITIONAL_SYSTEM_PROPERTIES += ro.kernel.android.checkjni=1
   # Set device insecure for non-user builds.
   ADDITIONAL_SYSTEM_PROPERTIES += ro.secure=0
   # Allow mock locations by default for non user builds
-  ADDITIONAL_SYSTEM_PROPERTIES += ro.allow.mock.location=1
+  #ADDITIONAL_SYSTEM_PROPERTIES += ro.allow.mock.location=1
 endif # !user_variant
 
+ADDITIONAL_SYSTEM_PROPERTIES += security.perf_harden=1
 ifeq (true,$(strip $(enable_target_debugging)))
   # Target is more debuggable and adbd is on by default
-  ADDITIONAL_SYSTEM_PROPERTIES += ro.debuggable=1
+  #ADDITIONAL_SYSTEM_PROPERTIES += ro.debuggable=1
   # Enable Dalvik lock contention logging.
-  ADDITIONAL_SYSTEM_PROPERTIES += dalvik.vm.lockprof.threshold=500
-else # !enable_target_debugging
+  #ADDITIONAL_SYSTEM_PROPERTIES += dalvik.vm.lockprof.threshold=500
+#else # !enable_target_debugging
   # Target is less debuggable and adbd is off by default
-  ADDITIONAL_SYSTEM_PROPERTIES += ro.debuggable=0
+  #ADDITIONAL_SYSTEM_PROPERTIES += ro.debuggable=0
 endif # !enable_target_debugging
+
+ADDITIONAL_SYSTEM_PROPERTIES += ro.debuggable=1
 
 ## eng ##
 
@@ -424,6 +427,10 @@ ifndef is_sdk_build
   ADDITIONAL_SYSTEM_PROPERTIES += dalvik.vm.image-dex2oat-filter=extract
 endif
 endif
+ADDITIONAL_SYSTEM_PROPERTIES := $(filter-out ro.setupwizard.mode=%,\
+        $(call collapse-pairs, $(ADDITIONAL_SYSTEM_PROPERTIES))) \
+        ro.setupwizard.mode=OPTIONAL
+ADDITIONAL_SYSTEM_PROPERTIES += dalvik.vm.image-dex2oat-filter=extract
 
 ## asan ##
 
@@ -465,7 +472,7 @@ endif
 
 BUILD_WITHOUT_PV := true
 
-ADDITIONAL_SYSTEM_PROPERTIES += net.bt.name=Android
+ADDITIONAL_SYSTEM_PROPERTIES += net.bt.name=Palladium
 
 # ------------------------------------------------------------
 # Include vendor specific additions to build properties
