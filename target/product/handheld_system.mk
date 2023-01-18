@@ -32,7 +32,7 @@ $(call inherit-product-if-exists, frameworks/base/data/keyboards/keyboards.mk)
 $(call inherit-product-if-exists, frameworks/webview/chromium/chromium.mk)
 
 PRODUCT_PACKAGES += \
-#    BasicDreams \
+    BasicDreams \
     BlockedNumberProvider \
     Bluetooth \
     BluetoothMidiService \
@@ -55,7 +55,7 @@ PRODUCT_PACKAGES += \
     ManagedProvisioning \
     MmsService \
     MtpService \
-#    MusicFX \
+    MusicFX \
     PacProcessor \
 #    PrintRecommendationService \
     PrintSpooler \
